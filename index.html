@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presente Romântico</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .swiper-slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 20px;
+      box-sizing: border-box;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    /* Overlay escuro para destacar o texto */
+    .swiper-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .text-block {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+      max-width: 90%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .text-block.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Botões invisíveis para navegação */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 50%;
+      height: 100%;
+      top: 0;
+      margin-top: 0;
+      background: transparent;
+    }
+
+    .swiper-button-prev {
+      left: 0;
+    }
+
+    .swiper-button-next {
+      right: 0;
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <audio id="bg-music" loop>
+    <source src="fotos/miss_aero.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById("bg-music");
+    window.addEventListener("load", () => {
+      music.play().catch(() => {
+        console.log("Autoplay bloqueado, esperando interação do usuário.");
+      });
+    });
+    document.body.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+      }
+    }, { once: true });
+  </script>
+
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="background-image: url('fotos/foto1_hd.png');">
+        <div class="text-block">Meu amor...</div>
+        <div class="text-block">Este é um presente só para você ❤️</div>
+      </div>
+
+      <div class="swiper-slide" style="background-image: url('fotos/foto2_nova.jpg');">
+        <div class="text-block">Cada momento ao seu lado...</div>
+        <div class="text-block">É um pedacinho do paraíso ✨</div>
+      </div>
+
+      <div class="swiper-slide" style="background-image: url('fotos/foto3_nova.jpg');">
+        <div class="text-block">Você é minha inspiração,</div>
+        <div class="text-block">meu sorriso e minha paz 🌹</div>
+      </div>
+
+      <div class="swiper-slide" style="background-image: url('fotos/foto4_nova.jpg');">
+        <div class="text-block">Prometo estar sempre com você...</div>
+        <div class="text-block">Hoje e para sempre 💍</div>
+      </div>
+
+      <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1499084732479-de2c02d45fc4');">
+        <div class="text-block">Te amo mais do que palavras podem dizer 💖</div>
+      </div>
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper', {
+      direction: 'horizontal',
+      slidesPerView: 1,
+      allowTouchMove: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      autoplay: false
+    });
+
+    swiper.on('slideChange', () => {
+      if (swiper.activeIndex === 1 && !swiper.autoplay.running) {
+        swiper.params.autoplay = {
+          delay: 12000,
+          disableOnInteraction: false
+        };
+        swiper.autoplay.start();
+      }
+    });
+
+    function animateTextBlocks(slide) {
+      const blocks = slide.querySelectorAll('.text-block');
+      blocks.forEach((block, i) => {
+        block.classList.remove('show');
+        setTimeout(() => {
+          block.classList.add('show');
+        }, i * 800);
+      });
+    }
+
+    swiper.on('slideChangeTransitionEnd', () => {
+      const activeSlide = swiper.slides[swiper.activeIndex];
+      animateTextBlocks(activeSlide);
+
+      if (swiper.isEnd) {
+        setTimeout(() => {
+          window.location.href = "check.html";
+        }, 5000);
+      }
+    });
+
+    animateTextBlocks(swiper.slides[0]);
+  </script>
+</body>
+</html>

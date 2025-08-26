@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosso Amor</title>
+<style>
+:root {
+    --bg: #0f0f14;
+    --card: #181824;
+    --text: #f5f7ff;
+    --muted: #b7b9c9;
+    --accent: #fd4444;
+    --accent-2: #ff7474;
+    --ring: #ff4d7e55;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; }
+
+body {
+    color: var(--text);
+    background:
+        radial-gradient(1200px 600px at 10% -10%, #ff4d7e22, transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, #7c4dff22, transparent 60%),
+        linear-gradient(180deg, #0e0e16, #0a0a12 40%, #0f0f14);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow: hidden;
+}
+
+.card {
+    width: 100%;
+    max-width: 680px;
+    background: linear-gradient(180deg, #1b1b2b, #161625);
+    border: 1px solid #ffffff10;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 60px #00000080, inset 0 1px 0 #ffffff10;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(400px 200px at 20% -10%, #ff4d7e30, transparent 60%);
+    pointer-events: none;
+}
+
+h1 {
+    margin: 0 0 12px;
+    font-size: clamp(22px, 3.6vw, 34px);
+    color: var(--accent);
+}
+
+p {
+    font-size: clamp(15px, 2.8vw, 18px);
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 32px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--text);
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 6px 20px #ff4d7e44;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px #ff4d7e66;
+}
+
+.heart {
+    position: absolute;
+    font-size: 24px;
+    color: var(--accent);
+    opacity: 0.7;
+    animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0.5); opacity:0.7;}
+    100% { transform: translateY(-10vh) scale(1.5); opacity:0;}
+}
+</style>
+</head>
+<body>
+<div class="card">
+    <h1>Meu Amor ❤️</h1>
+    <p>
+        Desde o momento em que você entrou na minha vida, tudo ficou mais bonito.<br>
+        Cada sorriso seu ilumina meus dias, cada abraço seu é o meu lar.<br>
+        Quero estar ao seu lado em cada instante, em cada sonho e em cada futuro que construirmos juntos.
+    </p>
+    <button onclick="continuar()">Continuar</button>
+</div>
+
+<script>
+function continuar() {
+    window.location.href = "new_present.html"; // altere para o link da próxima página
+}
+
+// Criar corações flutuantes
+function criarCoracao() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+
+// Frequência maior de corações
+setInterval(criarCoracao, 50);
+</script>
+</body>
+</html>

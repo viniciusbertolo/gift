@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
 
+
     <style>
         /* CSS da Caixa de Presente */
         html {
@@ -32,6 +33,15 @@
             height: 100vh;
             margin: 0;
             cursor: pointer;
+        }
+
+        .cronometro {
+            position: fixed;
+            bottom: 100px;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-decoration: none;
         }
 
         .present {
@@ -795,6 +805,16 @@
 
 
         @media (max-width: 480px) {
+
+            .cronometro {
+                position: fixed;
+                bottom: 100px;
+                color: white;
+                font-size: 48px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
             .ticket {
                 width: 250px;
                 height: 104px;
@@ -1144,7 +1164,7 @@
                 left: 43.75px;
                 /* 105px * 0.4167 */
                 top: 0px;
-               
+
             }
 
             .sub-content {
@@ -1380,14 +1400,15 @@
                 /* 10px * 0.4167 */
                 left: 185.92px;
                 /* 475px * 0.4167 */
-                transform: scale(0.3); 
+                transform: scale(0.3);
             }
-            .planeslip2{
+
+            .planeslip2 {
                 top: -18px;
                 /* 10px * 0.4167 */
                 left: 28px;
                 /* 475px * 0.4167 */
-                transform: scale(0.3); 
+                transform: scale(0.3);
             }
 
             .airlineslip {
@@ -1513,6 +1534,7 @@
             </div>
         </div>
     </div>
+    <a class="cronometro" href="clock.html" target="_blank" rel="noopener noreferrer">Cronômetro</a>
 
     <script>
         const present = document.querySelector('.present');
